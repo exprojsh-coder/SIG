@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import EventTimelineCalendar from '@/components/EventTimelineCalendar';
 import { useSession } from 'next-auth/react'
 import { useParams, useRouter } from 'next/navigation'
 import {
@@ -459,6 +460,7 @@ export default function SDGDetailPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <Paper elevation={2} sx={{ p: 4, borderRadius: 3, mb: 4 }}>
+             
               <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3, color: 'primary.main' }}>
                 About This Goal
               </Typography>
@@ -602,6 +604,7 @@ export default function SDGDetailPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Paper elevation={3} sx={{ p: 4, borderRadius: 3, position: 'sticky', top: 20 }}>
+               <EventTimelineCalendar sdgId={sdg.id} color={sdg.color} /> {/*calendar*/}
               <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3, color: sdg.color }}>
                 Get Involved
               </Typography>
