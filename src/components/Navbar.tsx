@@ -37,7 +37,7 @@ import {
   Info,
   VolunteerActivism,
   TrendingUp,
-  Insights,
+
   KeyboardArrowDown,
   Person,
   AdminPanelSettings,
@@ -684,23 +684,7 @@ export default function Navbar() {
               >
                 About
               </Button>
-              <Button 
-                component={Link} 
-                href="/insights" 
-                startIcon={<Insights />}
-                sx={{ 
-                  color: 'text.primary',
-                  borderRadius: 2,
-                  px: 2,
-                  py: 1,
-                  '&:hover': {
-                    bgcolor: alpha(theme.palette.primary.main, 0.08),
-                  }
-                }}
-              >
-                Insights
-              </Button>
-              
+             
               {status === 'authenticated' ? (
                 <>
                   <IconButton
