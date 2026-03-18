@@ -528,14 +528,6 @@ export default function DashboardPage() {
               >
                 Update Profile
               </Button>
-              <Button 
-                variant="outlined" 
-                fullWidth 
-                startIcon={<EmojiEventsIcon />}
-                onClick={() => router.push('/achievements')}
-              >
-                View Achievements
-              </Button>
             </Stack>
           </Paper>
 

@@ -209,28 +209,6 @@ export default function Navbar() {
           </ListItemIcon>
           <ListItemText primary="My Profile" />
         </MenuItem>
-        <MenuItem 
-          component={Link} 
-          href="/applications" 
-          onClick={handleMenuClose}
-          sx={{ py: 1.5, px: 3 }}
-        >
-          <ListItemIcon>
-            <Assignment fontSize="small" sx={{ color: 'primary.main' }} />
-          </ListItemIcon>
-          <ListItemText primary="Applications" />
-        </MenuItem>
-        <MenuItem 
-          component={Link} 
-          href="/achievements" 
-          onClick={handleMenuClose}
-          sx={{ py: 1.5, px: 3 }}
-        >
-          <ListItemIcon>
-            <EmojiEvents fontSize="small" sx={{ color: 'primary.main' }} />
-          </ListItemIcon>
-          <ListItemText primary="Achievements" />
-        </MenuItem>
         {session?.user?.email?.includes('admin') && (
           <MenuItem 
             component={Link} 
@@ -447,12 +425,6 @@ export default function Navbar() {
               <Person fontSize="small" />
             </ListItemIcon>
             <ListItemText>Profile</ListItemText>
-          </MenuItem>
-          <MenuItem component={Link} href="/applications" onClick={handleMobileMenuClose}>
-            <ListItemIcon>
-              <Assignment fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Applications</ListItemText>
           </MenuItem>
           
           <Divider />

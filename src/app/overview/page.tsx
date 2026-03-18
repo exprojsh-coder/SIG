@@ -248,15 +248,7 @@ export default function OverviewPage() {
                 <People sx={{ color: 'white' }} />
               </Avatar>
             </Stack>
-            <Button 
-              fullWidth 
-              endIcon={<ArrowForward />} 
-              sx={{ mt: 3 }}
-              component={Link}
-              href="/achievements"
-            >
-              View All Achievements
-            </Button>
+           
           </Paper>
         </Grid>
       </Grid>
