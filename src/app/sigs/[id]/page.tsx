@@ -378,7 +378,7 @@ export default function SDGDetailPage() {
           <Button
             variant="contained"
             startIcon={<ArrowBackIcon />}
-            onClick={() => router.push('/sdgs')}
+            onClick={() => router.push('/sdg')}
             sx={{ mt: 2 }}
           >
             Back to SDGs
@@ -398,7 +398,7 @@ export default function SDGDetailPage() {
       >
         <Button
           startIcon={<ArrowBackIcon />}
-          onClick={() => router.push('/sdgs')}
+          onClick={() => router.push('/sdg')}
           sx={{ mb: 3 }}
         >
           Back to All SDGs

@@ -384,7 +384,7 @@ CREATE INDEX idx_sdg_events_dates ON public.sdg_events(start_date, end_date);
               <Button
                 variant="outlined"
                 startIcon={<ArrowBackIcon />}
-                onClick={() => router.push('/sdgs')}
+                onClick={() => router.push('/sdg')}
               >
                 Back to SDGs
               </Button>
