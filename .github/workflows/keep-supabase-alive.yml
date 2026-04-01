@@ -2,28 +2,25 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: '0 0 * * 0,3'  # Every Sunday & Wednesday at midnight UTC
-  workflow_dispatch:  # Manual trigger button
+    - cron: '0 0 * * 0,3'
+  workflow_dispatch:
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Database with RPC
+      - name: Ping Supabase Database
         run: |
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/now" \
-          -H "apikey: ${{ secrets.SERVICE_ROLE_KEY }}" \
-          -H "Authorization: Bearer ${{ secrets.SERVICE_ROLE_KEY }}" \
-          -H "Content-Type: application/json" \
-          -d '{}')
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/sigs?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SERVICE_ROLE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SERVICE_ROLE_KEY }}")
           
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-          BODY=$(echo "$RESPONSE" | sed '$d')
-          
-          echo "Response: $BODY"
           echo "Status: $HTTP_CODE"
           
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "Failed to ping Supabase"
+            echo "Error: $RESPONSE"
             exit 1
           fi
+          echo "Success! Database is active."
