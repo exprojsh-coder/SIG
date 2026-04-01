@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import EventTimelineCalendar from '@/components/EventTimelineCalendar';
+import SDGEvents from '@/components/SDGEvents'
 import { useSession } from 'next-auth/react'
 import { useParams, useRouter } from 'next/navigation'
 import {
@@ -204,7 +205,7 @@ export default function SDGDetailPage() {
         email: session.user.email,
         name: session.user.name || '',
         image: session.user.image || '',
-        google_id: session.user.id || null // Handle case where id might be undefined
+        google_id: session.user.id || null
       }
       
       console.log('User data to insert:', userData)
@@ -243,11 +244,10 @@ export default function SDGDetailPage() {
     const sdgId = parseInt(id as string)
 
     try {
-      // Fixed: Use sdg_applications table and sdg_id column
       const { data: existingApp, error } = await supabase
         .from('sdg_applications')
         .select('id')
-        .eq('sdg_id', sdgId) // Use sdg_id, not id
+        .eq('sdg_id', sdgId)
         .eq('user_id', userData.id)
         .maybeSingle()
 
@@ -311,7 +311,7 @@ export default function SDGDetailPage() {
         .insert([
           {
             user_id: userData.id,
-            sdg_id: sdgId, // Use sdg_id
+            sdg_id: sdgId,
             status: 'pending'
           }
         ])
@@ -596,7 +596,7 @@ export default function SDGDetailPage() {
           </motion.div>
         </Grid>
 
-        {/* Right Column - Volunteer Action */}
+        {/* Right Column - Volunteer Action & Events */}
         <Grid size={{xs:12, md:4}}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -604,7 +604,14 @@ export default function SDGDetailPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Paper elevation={3} sx={{ p: 4, borderRadius: 3, position: 'sticky', top: 20 }}>
-               <EventTimelineCalendar sdgId={sdg.id} color={sdg.color} /> {/*calendar*/}
+              {/* Calendar */}
+              <EventTimelineCalendar sdgId={sdg.id} color={sdg.color} />
+              
+              {/* Editable Events Section - NEW */}
+              <SDGEvents sdgId={sdg.id} color={sdg.color} />
+              
+              <Divider sx={{ my: 3 }} />
+              
               <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3, color: sdg.color }}>
                 Get Involved
               </Typography>
